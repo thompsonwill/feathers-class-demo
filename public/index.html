@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>A FeathersJS application</title>
+  <meta name="description" content="A FeathersJS server">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <h1>Hey it's me, Will Thompson your friendly bootcamp TA, *dab*</h1>
+
+    <div id="todo">
+
+    </div>
+
+  </div>
+  <script>
+
+
+const deleteTodo = function(id){
+  $.ajax({
+      url: '/classdemo/'+id,
+      method: "DELETE"
+    }).then(function (response) {
+      console.log(response)
+    });
+}
+
+    $.ajax({
+      url: '/classdemo/',
+      method: "GET"
+    }).then(function (response) {
+
+      const todoData = response.data;
+      const div = $('#todo');
+     
+      console.log(response);
+
+      console.log(todoData);
+
+      for (var i = 0; i < todoData.length; i++) {
+
+        div.append(`<li id=${todoData[i]._id}>${todoData[i].title}<button>btn</button></li>`);
+
+        // Creating and storing a div tag
+        var resultDiv = $("<div>");
+
+        // Creating a paragraph tag with the result item's rating
+        // Setting the src attribute of the image to a property pulled off the result item
+
+        // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
+        $("#todo").prepend(resultDiv);
+      }
+    });
+
+
+
+
+  </script>
+</body>
+
+</html>
